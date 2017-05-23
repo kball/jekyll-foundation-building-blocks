@@ -4,7 +4,12 @@ module JekyllFoundationBuildingBlocks
   module Util
     def self.fetch_url(url)
       uri = URI(url)
-      Net::HTTP.get(uri)
+      response = Net::HTTP.get_response(uri)
+      if response.code == "200"
+        response.body
+      else
+        ''
+      end
     end
 
     def self.fetch_json(url)

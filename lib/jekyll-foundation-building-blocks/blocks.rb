@@ -4,6 +4,7 @@ require 'fileutils'
 
 module JekyllFoundationBuildingBlocks
   BLOCKS_ROOT = "https://foundation.zurb.com/building-blocks/"
+  BLOCKS_FILE_ROOT = "#{BLOCKS_ROOT}/files/building-blocks/"
   BLOCKS_JSON_URL = "#{BLOCKS_ROOT}data/building-blocks.json"
   module Blocks
     def self.list
@@ -23,7 +24,7 @@ module JekyllFoundationBuildingBlocks
     end
 
     def self._install_partial(key)
-      file = Util.fetch_url("#{BLOCKS_ROOT}/#{key}/#{key}.html")
+      file = Util.fetch_url("#{BLOCKS_FILE_ROOT}#{key}/#{key}.html")
       dir = File.join("_includes", "building-blocks")
       FileUtils.mkdir_p(dir)
       filename = "_#{key}.html".gsub('-', '_')
@@ -31,14 +32,16 @@ module JekyllFoundationBuildingBlocks
     end
 
     def self._install_scss(key)
-      file = Util.fetch_url("#{BLOCKS_ROOT}/#{key}/#{key}.scss")
+      file = Util.fetch_url("#{BLOCKS_FILE_ROOT}#{key}/#{key}.scss")
+      return unless file.size > 0
       dir = File.join("_sass", "components", "building-blocks")
       FileUtils.mkdir_p(dir)
       File.open(File.join(dir, "_#{key}.scss"), 'w').write(file)
     end
 
     def self._install_js(key)
-      file = Util.fetch_url("#{BLOCKS_ROOT}/#{key}/#{key}.js")
+      file = Util.fetch_url("#{BLOCKS_FILE_ROOT}#{key}/#{key}.js")
+      return unless file.size > 0
       dir = File.join("js", "building-blocks")
       FileUtils.mkdir_p(dir)
       File.open(File.join(dir, "#{key}.js"), 'w').write(file)
