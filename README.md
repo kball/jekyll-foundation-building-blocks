@@ -1,6 +1,14 @@
 # jekyll-foundation-building-blocks
 A Jekyll plugin to make it easy to install [Foundation Building Blocks](http://foundation.zurb.com/building-blocks).
 
+To install into a Jekyll project, put in your Gemfile inside the `:jekyll_plugins` group. E.g.
+
+```
+group :jekyll_plugins do
+  gem "my_fancy_jekyll_plugin"
+end
+```
+
 Simply run
 
 ```
