@@ -27,7 +27,7 @@ module JekyllFoundationBuildingBlocks
       file = Util.fetch_url("#{BLOCKS_FILE_ROOT}#{key}/#{key}.html")
       dir = File.join("_includes", "building-blocks")
       FileUtils.mkdir_p(dir)
-      filename = "_#{key}.html".gsub('-', '_')
+      filename = "#{key}.html"
       File.open(File.join(dir, filename), 'w').write(file)
     end
 
